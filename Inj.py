@@ -26,6 +26,7 @@ class Inj(QDialog, Ui_Dialog):
     @pyqtSlot()
     def on_b_1_clicked(self):
         self.lW_1.clear()
+        self.lW_2.clear()
         filep = self.lE_1.text()
         filec = open(filep)
         for line in filec.readlines():
@@ -37,14 +38,18 @@ class Inj(QDialog, Ui_Dialog):
     @pyqtSlot()
     def on_b_2_clicked(self):
         rows = self.lW_1.count()
+        file2 = open('file2.txt', 'a')
         print(rows)
         for row in range(0, rows, 1):
             url1 = self.lW_1. item(row).text()
             print(url1)
             points = spid.spide(url1)
-            print(points)
+            #print(points2)
         self.lW_2.addItems(points)
+        for row2 in points:
+            file2.write(row2+'\n')
         points = []
+        file2.close()
         
 if __name__=='__main__':
     app = QApplication(sys.argv)
